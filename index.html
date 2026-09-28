@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elite Talent — Placement de talents à l'international</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,380;9..144,480;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2440;
+    --paper:#EFEDE4;
+    --paper-2:#E6E3D6;
+    --gold:#B9832A;
+    --gold-deep:#8F631C;
+    --teal:#2F5D55;
+    --line:#D2CDBC;
+    --white:#FAF9F5;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:480;
+    margin:0;
+    color:var(--ink);
+  }
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+  header{
+    position:sticky; top:0; z-index:10;
+    background:rgba(239,237,228,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:20px 0;}
+  .wordmark{font-family:'Fraunces', serif; font-size:22px; font-weight:600; letter-spacing:-0.01em;}
+  .wordmark span{color:var(--gold-deep);}
+  .navlinks{display:flex; gap:32px; font-size:15px;}
+  .navlinks a{text-decoration:none; border-bottom:1px solid transparent; padding-bottom:2px; transition:border-color .2s;}
+  .navlinks a:hover{border-color:var(--gold);}
+  .navcta{
+    font-size:14px; text-decoration:none; background:var(--ink); color:var(--white);
+    padding:9px 18px; border-radius:2px; white-space:nowrap;
+  }
+  @media (max-width:720px){ .navlinks{display:none;} }
+  .hero{padding:88px 0 96px;}
+  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;}
+  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr; gap:48px;} }
+  .hero h1{
+    font-size:clamp(34px, 5vw, 52px);
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    max-width:15ch;
+  }
+  .hero p.lede{
+    margin-top:24px; font-size:18px; max-width:46ch; color:#3A4258;
+  }
+  .hero-actions{margin-top:36px; display:flex; gap:16px; flex-wrap:wrap;}
+  .btn-primary{
+    display:inline-block; background:var(--ink); color:var(--white); text-decoration:none;
+    padding:14px 26px; border-radius:2px; font-size:15px; font-weight:500;
+  }
+  .btn-secondary{
+    display:inline-block; text-decoration:none; color:var(--ink);
+    padding:14px 4px; font-size:15px; border-bottom:1px solid var(--ink);
+  }
+  .route-card{
+    background:var(--white); border:1px solid var(--line); border-radius:4px; padding:28px 24px 24px;
+  }
+  .route-card svg{width:100%; height:auto; display:block;}
+  .route-caption{display:flex; justify-content:space-between; font-size:13px; color:#5B6178; margin-top:14px;}
+  .section{padding:80px 0;}
+  .section-head{max-width:640px; margin-bottom:48px;}
+  .section-head h2{font-size:clamp(26px,3.2vw,34px); line-height:1.2;}
+  .section-head p{margin-top:14px; font-size:16px; color:#3A4258; max-width:56ch;}
+  .divider{border:none; border-top:1px solid var(--line); margin:0;}
+  .services{list-style:none; margin:0; padding:0;}
+  .service{
+    display:grid; grid-template-columns:64px 1fr; gap:24px;
+    padding:32px 0; border-top:1px solid var(--line);
+  }
+  .services li:last-child{border-bottom:1px solid var(--line);}
+  .service .mark{
+    width:44px; height:44px; border-radius:50%;
+    border:1px solid var(--gold-deep); color:var(--gold-deep);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .service h3{font-size:20px; font-weight:500;}
+  .service p{margin:10px 0 0; color:#3A4258; font-size:15.5px; max-width:60ch;}
+  .service .tag{
+    display:inline-block; margin-top:12px; font-size:13px; color:var(--teal);
+    border:1px solid var(--teal); padding:3px 10px; border-radius:20px;
+  }
+  .process-wrap{background:var(--ink); color:var(--white);}
+  .process-wrap .section-head p{color:#C9CCDC;}
+  .process-wrap .section-head h2{color:var(--white);}
+  .steps{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:28px; position:relative;
+  }
+  @media (max-width:860px){ .steps{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .steps{grid-template-columns:1fr;} }
+  .step{border-top:2px solid var(--gold); padding-top:18px;}
+  .step .num{font-family:'Fraunces', serif; font-size:32px; color:var(--gold); display:block; margin-bottom:10px;}
+  .step h3{color:var(--white); font-size:18px; font-weight:500;}
+  .step p{margin-top:10px; font-size:14.5px; color:#C9CCDC;}
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+  @media (max-width:720px){ .contact-grid{grid-template-columns:1fr;} }
+  .contact-card{
+    border:1px solid var(--line); border-radius:4px; padding:32px; background:var(--white);
+  }
+  .contact-card h3{font-size:19px; font-weight:500;}
+  .contact-card p{color:#3A4258; font-size:15px; margin-top:10px;}
+  .contact-card a.cta{
+    display:inline-block; margin-top:18px; font-size:14.5px; color:var(--gold-deep);
+    border-bottom:1px solid var(--gold-deep); text-decoration:none; padding-bottom:2px;
+  }
+  footer{
+    border-top:1px solid var(--line); padding:32px 0; font-size:13.5px; color:#5B6178;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="wordmark">Elite<span>Talent</span></div>
+    <nav class="navlinks">
+      <a href="#services">Services</a>
+      <a href="#methode">Notre méthode</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="navcta" href="mailto:recruitment@elitetalent.online">Nous écrire</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Des parcours professionnels qui traversent les frontières.</h1>
+      <p class="lede">Elite Talent met en relation des professionnels qualifiés d'Afrique de l'Ouest avec des employeurs au Canada et en Australie confrontés à des pénuries de main-d'œuvre, et les accompagne à chaque étape, du dossier jusqu'à l'installation.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="mailto:recruitment@elitetalent.online">Écrire à l'équipe</a>
+        <a class="btn-secondary" href="#services">Voir nos domaines de placement</a>
+      </div>
+    </div>
+    <div class="route-card">
+      <svg viewBox="0 0 320 220" fill="none">
+        <path d="M40 170 C 110 60, 210 60, 280 40" stroke="#B9832A" stroke-width="1.6" stroke-dasharray="2 7" stroke-linecap="round"/>
+        <circle cx="40" cy="170" r="5" fill="#1B2440"/>
+        <circle cx="280" cy="40" r="5" fill="#8F631C"/>
+        <circle cx="160" cy="90" r="3" fill="#2F5D55"/>
+        <text x="16" y="192" font-family="IBM Plex Sans" font-size="12" fill="#1B2440">Ouagadougou</text>
+        <text x="196" y="26" font-family="IBM Plex Sans" font-size="12" fill="#8F631C">Employeur partenaire</text>
+      </svg>
+      <div class="route-caption">
+        <span>Candidat évalué</span>
+        <span>Dossier accompagné</span>
+        <span>Poste confirmé</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Deux marchés, une même exigence de dossier.</h2>
+      <p>Nous concentrons notre travail sur des filières précises, où la demande de main-d'œuvre étrangère est réelle et documentée.</p>
+    </div>
+    <ul class="services">
+      <li class="service">
+        <div class="mark">CA</div>
+        <div>
+          <h3>Placement agricole — Canada</h3>
+          <p>Accompagnement de candidats vers des postes d'ouvrier·ère agricole polyvalent·e au Canada, dans le cadre du volet des travailleurs étrangers temporaires, en lien avec les centres de recrutement régionaux.</p>
+          <span class="tag">Volet agricole international</span>
+        </div>
+      </li>
+      <li class="service">
+        <div class="mark">AU</div>
+        <div>
+          <h3>Mécanique lourde &amp; mines — Australie</h3>
+          <p>Mise en relation avec des employeurs miniers et industriels australiens en pénurie de main-d'œuvre qualifiée, avec accompagnement vers le parrainage visa (Skills in Demand) et l'évaluation des compétences (TRA).</p>
+          <span class="tag">Sponsorship visa 482</span>
+        </div>
+      </li>
+      <li class="service">
+        <div class="mark">Ds</div>
+        <div>
+          <h3>Constitution de dossier &amp; suivi</h3>
+          <p>CV adapté aux standards du pays visé, lettre de présentation, mise en forme des attestations et pièces d'identité, coordination des démarches annexes (tests de langue, évaluations de compétences).</p>
+          <span class="tag">Suivi personnalisé</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="process-wrap section" id="methode">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Notre méthode</h2>
+      <p>Un même chemin, quel que soit le pays de destination.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="num">01</span>
+        <h3>Évaluation du profil</h3>
+        <p>Étude de l'expérience, des compétences et des pays réalistes pour ce profil.</p>
+      </div>
+      <div class="step">
+        <span class="num">02</span>
+        <h3>Constitution du dossier</h3>
+        <p>CV, lettre, attestations et pièces d'identité, préparés selon les standards du pays cible.</p>
+      </div>
+      <div class="step">
+        <span class="num">03</span>
+        <h3>Mise en relation</h3>
+        <p>Présentation du dossier aux employeurs et agences partenaires pertinents.</p>
+      </div>
+      <div class="step">
+        <span class="num">04</span>
+        <h3>Suivi jusqu'à l'installation</h3>
+        <p>Accompagnement pendant les démarches de visa, jusqu'au départ effectif.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Nous contacter</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Vous recrutez ?</h3>
+        <p>Décrivez le poste à pourvoir et le pays concerné : nous vous proposons des profils déjà évalués et documentés.</p>
+        <a class="cta" href="mailto:recruitment@elitetalent.online?subject=Recrutement%20-%20poste%20%C3%A0%20pourvoir">recruitment@elitetalent.online →</a>
+      </div>
+      <div class="contact-card">
+        <h3>Vous cherchez un poste à l'international ?</h3>
+        <p>Envoyez votre CV et le pays qui vous intéresse : nous étudions votre profil et revenons vers vous si une piste correspond.</p>
+        <a class="cta" href="mailto:recruitment@elitetalent.online?subject=Candidature%20-%20profil%20%C3%A0%20l%27international">recruitment@elitetalent.online →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>© 2026 Elite Talent</span>
+  <span>recruitment@elitetalent.online · elitetalent.online</span>
+</footer>
+
+</body>
+</html>
